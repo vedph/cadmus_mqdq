@@ -2,9 +2,9 @@
 using Cadmus.Core;
 using Cadmus.Core.Config;
 using Cadmus.Core.Storage;
+using Cadmus.General.Parts;
 using Cadmus.Mongo;
-using Cadmus.Parts.General;
-using Cadmus.Philology.Parts.Layers;
+using Cadmus.Philology.Parts;
 using Fusi.Tools.Config;
 using System;
 using System.Reflection;
@@ -25,7 +25,7 @@ namespace Cadmus.Cli.Plugin.Mqdq
             _map = new TagAttributeToTypeMap();
             _map.Add(new[]
             {
-                // Cadmus.Parts
+                // Cadmus.General.Parts
                 typeof(NotePart).GetTypeInfo().Assembly,
                 // Cadmus.Philology.Parts
                 typeof(ApparatusLayerFragment).GetTypeInfo().Assembly
@@ -41,9 +41,7 @@ namespace Cadmus.Cli.Plugin.Mqdq
 
             // create the repository (no need to use container here)
             MongoCadmusRepository repository =
-                new MongoCadmusRepository(
-                    _partTypeProvider,
-                    new StandardItemSortKeyBuilder());
+                new(_partTypeProvider, new StandardItemSortKeyBuilder());
 
             repository.Configure(new MongoCadmusRepositoryOptions
             {
