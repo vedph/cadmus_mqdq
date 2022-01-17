@@ -11,19 +11,18 @@ using System.Reflection;
 
 namespace Cadmus.Cli.Plugin.Mqdq
 {
-    [Tag("repository-factory-provider.mqdq")]
+    [Tag("cli-repository-provider.mqdq")]
     public sealed class MqdqCliRepositoryFactoryProvider :
-        ICliRepositoryFactoryProvider
+        ICliCadmusRepositoryProvider
     {
-        private readonly TagAttributeToTypeMap _map;
         private readonly IPartTypeProvider _partTypeProvider;
 
         public string ConnectionString { get; set; }
 
         public MqdqCliRepositoryFactoryProvider()
         {
-            _map = new TagAttributeToTypeMap();
-            _map.Add(new[]
+            TagAttributeToTypeMap map = new();
+            map.Add(new[]
             {
                 // Cadmus.General.Parts
                 typeof(NotePart).GetTypeInfo().Assembly,
@@ -31,7 +30,7 @@ namespace Cadmus.Cli.Plugin.Mqdq
                 typeof(ApparatusLayerFragment).GetTypeInfo().Assembly
             });
 
-            _partTypeProvider = new StandardPartTypeProvider(_map);
+            _partTypeProvider = new StandardPartTypeProvider(map);
         }
 
         public ICadmusRepository CreateRepository(string database)

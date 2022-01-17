@@ -12,7 +12,7 @@ using System.Reflection;
 
 namespace Cadmus.Cli.Plugin.Mqdq
 {
-    [Tag("part-seeder-factory-provider.mqdq")]
+    [Tag("cli-seeder-factory-provider.mqdq")]
     public sealed class MqdqCliPartSeederFactoryProvider :
         ICliPartSeederFactoryProvider
     {
@@ -33,7 +33,7 @@ namespace Cadmus.Cli.Plugin.Mqdq
             map.Add(seedAssemblies);
 
             // build the container for seeders
-            Container container = new Container();
+            Container container = new();
             PartSeederFactory.ConfigureServices(
                 container,
                 new StandardPartTypeProvider(map),
