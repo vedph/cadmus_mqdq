@@ -10,6 +10,7 @@ The compiled binaries can be copied under a `Cadmus.Cli.Plugin.Mqdq` subfolder o
 
 ## History
 
+- 2022-09-09: updated packages.
 - 2022-06-20: updated packages.
 - 2022-01-17: updated CLI interfaces.
 - 2021-12-18: updated packages.
